@@ -1,0 +1,50 @@
+
+
+tablet_native:
+  image: butomo1989/docker-android-x86-7.1.1
+  privileged: true
+  ports: [4723,5554,5555,6080]
+  volumes:
+    #- $PWD/example/sample_apk:/root/tmp
+    - ./video-tablet-native:/tmp/video
+  environment:
+    - DEVICE=Nexus 7
+    - APPIUM=true
+    - AUTO_RECORD=true
+
+phone_web:
+  image: butomo1989/docker-android-x86-7.1.1
+  privileged: true
+  ports: [6080]
+  volumes:
+    - ./video-phone-web:/tmp/video
+  environment:
+    - DEVICE=Samsung Galaxy S6
+    - APPIUM=true
+    - MOBILE_WEB_TEST=True
+    - AUTO_RECORD=True
+
+phone_native:
+  image: butomo1989/docker-android-x86-7.1.1
+  privileged: true
+  ports: [6080]
+  volumes:
+    - ./video-phone-native:/tmp/video
+  environment:
+    - DEVICE=Samsung Galaxy S6
+    - APPIUM=true
+
+phone_grid:
+  image: butomo1989/docker-android-x86-7.1.1
+  privileged: true
+  ports:
+    - 6080
+  volumes:
+    - ./video-phone-grid:/tmp/video
+  environment:
+    - DEVICE=Samsung Galaxy S6
+    - CONNECT_TO_GRID=True
+    - APPIUM=true
+    - SELENIUM_HOST=selenium_hub
+    - MOBILE_WEB_TEST=True
+    - AUTO_RECORD=True
